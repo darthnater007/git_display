@@ -1,5 +1,5 @@
 data = {
-	"project_full_path" : "/Users/darthnater/Desktop/Code/projectRepos/Oodlr/OodlrApp",
+	"project_full_path" : "",
 	"branches" : {
 		"current" : "",
 		"shared" : [],
