@@ -1,5 +1,5 @@
-git_dict = {
-	"project_full_path" : "",
+data = {
+	"project_full_path" : "/Users/darthnater/Desktop/Code/projectRepos/Oodlr/OodlrApp",
 	"branches" : {
 		"current" : "",
 		"shared" : [],
