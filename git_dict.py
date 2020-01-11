@@ -2,7 +2,7 @@ data = {
 	"project_full_path" : "",
 	"branches" : {
 		"current" : "",
-		"shared" : [],
+		"local" : [],
 		"remote" : [],
 	},
 	"commit_diff": {
