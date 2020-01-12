@@ -11,9 +11,9 @@ def return_output(command):
 
 def get_all_branches():
 	raw_output = str(return_output("git branch -a"))
-
-	git_dict.data['branches']['current'] = re.search("\* (\w*)", raw_output).group(1)
-	git_dict.data['branches']['local'] = re.findall("\s(?! remotes) (\w*)", raw_output)
+	print(raw_output)
+	git_dict.data['branches']['current'] = re.search("\* ([a-zA-Z_0-9\-]*)", raw_output).group(1)
+	git_dict.data['branches']['local'] = re.findall("\s(?! remotes) ([a-zA-Z_0-9\-]*)", raw_output)
 	git_dict.data['branches']['remote'] = re.findall("remotes/*([^\\\\]*)", raw_output)
 
 
@@ -22,12 +22,17 @@ def get_commit_diff():
 	local_output_command = "git rev-list --left-right --count " + git_dict.data['branches']['current'] + "..master"
 	remote_output_command = "git rev-list --left-right --count " + git_dict.data['branches']['current'] + "..origin/master"
 
-	local_raw_output = return_output(local_output_command)
-	remote_raw_output = return_output(remote_output_command)
+	local_raw_output = str(return_output(local_output_command))
+	remote_raw_output = str(return_output(remote_output_command))
+
+	print(local_raw_output)
 
 def get_file_status():
 	raw_output = return_output("git status")
 
+
+
 #test
 get_all_branches()
+get_commit_diff()
 print('\n' + json.dumps(git_dict.data, indent=4))
