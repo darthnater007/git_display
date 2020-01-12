@@ -17,7 +17,6 @@ def get_all_branches():
 	git_dict.data['branches']['remote'] = re.findall("remotes/*([^\\\\]*)", raw_output)
 
 def get_commit_diff():
-	#https://stackoverflow.com/questions/20433867/git-ahead-behind-info-between-master-and-branch
 	local_output_command = "git rev-list --left-right --count " + git_dict.data['branches']['current'] + "..master"
 	remote_output_command = "git rev-list --left-right --count " + git_dict.data['branches']['current'] + "..origin/master"
 
@@ -43,11 +42,3 @@ def get_file_status():
 	git_dict.data['files']['staged'] = parse_files(re.search("committed:(.*)Changes", raw_output).group(1))
 	git_dict.data['files']['unstaged'] = parse_files(re.search("commit:(.*)Untracked", raw_output).group(1))
 	git_dict.data['files']['untracked'] =  re.findall(r"\\t(\w*.\w*)", re.search("Untracked files:(.*)", raw_output).group(1))
-
-
-
-#test
-get_all_branches()
-get_commit_diff()
-get_file_status()
-print('\n' + json.dumps(git_dict.data, indent=4))
